@@ -11,21 +11,10 @@ const forecast = (latitude, longitude, callback) => {
         } else {
 
             const {latitude, longitude, timezone} = body
-            const {summary, temperature} = body.currently
-            
-            // console.log('latitude', latitude)
-            // console.log('longitude', longitude)
-            // console.log('summary', summary)
-            // console.log('temperature', temperature)
-            // console.log('timezone', timezone)
+            const {summary, temperature, precipProbability} = body.currently
+            const {temperatureLow, temperatureHigh} = body.daily.data[0]
 
-            callback(undefined, {
-                latitude,
-                longitude,
-                summary,
-                temperature,
-                timezone
-            })
+            callback(undefined, `${summary}. It is currently ${temperature} degress out. There is a ${precipProbability}%  chance of rain. Low-temperature is ${temperatureLow} and high-temperature is ${temperatureHigh}`)
         }
     })
 }
